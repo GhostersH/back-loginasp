@@ -38,29 +38,11 @@ namespace TuNombreDeProyecto
 
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+  public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(builder =>
-        builder.WithOrigins("https://login-proyecto-angular-master-2.vercel.app/")
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-        .WithExposedHeaders("Access-Control-Allow-Origin")
-        .SetIsOriginAllowed(origin => true)
-        .AllowCredentials());
+            app.UseCors();
 
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-            
-            app.Use(async (context, next) =>  
-{  
-    context.Response.Headers.Add("Access-Control-Allow-Origin", "https://login-proyecto-angular-master-2.vercel.app");  
-    await next();  
-});  
-
+      
 
         }
     }
