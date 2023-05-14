@@ -41,7 +41,7 @@ namespace TuNombreDeProyecto
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseCors(builder =>
-        builder.WithOrigins("http://localhost:62265")
+        builder.WithOrigins("https://login-proyecto-angular-master-2.vercel.app/")
         .AllowAnyHeader()
         .AllowAnyMethod()
         .WithExposedHeaders("Access-Control-Allow-Origin")
