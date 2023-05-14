@@ -21,7 +21,7 @@ namespace TuNombreDeProyecto
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
+       public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             services.AddHttpClient();
@@ -31,7 +31,7 @@ namespace TuNombreDeProyecto
                 {
                     builder.AllowAnyHeader()
                            .AllowAnyMethod()
-                           .WithOrigins("https://login-proyecto-angular-master-2.vercel.app/"); // reemplazar con la URL de tu aplicación de Angular
+                           .AllowAnyOrigin(); // Permitir solicitudes desde cualquier origen  
                 });
             });
 
