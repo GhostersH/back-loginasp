@@ -1,4 +1,4 @@
-﻿
+
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
@@ -21,7 +21,7 @@ namespace TuNombreDeProyecto
 {
     public class Startup
     {
-       public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             services.AddHttpClient();
@@ -31,14 +31,13 @@ namespace TuNombreDeProyecto
                 {
                     builder.AllowAnyHeader()
                            .AllowAnyMethod()
-                           .AllowAnyOrigin(); // Permitir solicitudes desde cualquier origen  
+                           .WithOrigins("https://login-proyecto-angular-master-2.vercel.app"); // Agrega esta línea para permitir solicitudes solo desde el dominio de tu aplicación Angular  
                 });
             });
-
-
         }
 
-  public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseCors();
 
