@@ -31,7 +31,7 @@ namespace TuNombreDeProyecto
                 {
                     builder.AllowAnyHeader()
                            .AllowAnyMethod()
-                           .WithOrigins("http://localhost:62265"); // reemplazar con la URL de tu aplicación de Angular
+                           .WithOrigins("https://login-proyecto-angular-master-2.vercel.app/"); // reemplazar con la URL de tu aplicación de Angular
                 });
             });
 
