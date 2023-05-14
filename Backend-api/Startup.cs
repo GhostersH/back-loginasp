@@ -54,6 +54,13 @@ namespace TuNombreDeProyecto
             {
                 endpoints.MapControllers();
             });
+            
+            app.Use(async (context, next) =>  
+{  
+    context.Response.Headers.Add("Access-Control-Allow-Origin", "https://login-proyecto-angular-master-2.vercel.app");  
+    await next();  
+});  
+
 
         }
     }
