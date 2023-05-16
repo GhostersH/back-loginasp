@@ -19,8 +19,6 @@ namespace Backend_api.Controllers
     public class ControladorAPIController : ControllerBase
     {
 
-
-        
         [HttpGet]
         [Route("api/v1/emisores")]
         public async Task<ActionResult<List<Emisor>>> GetEmisoresAsync()
@@ -46,30 +44,16 @@ namespace Backend_api.Controllers
             _httpClient = httpClientFactory.CreateClient();
         }
 
-
         [HttpPost("login")]
         public async Task<ActionResult> Login(LoginModel login)
         {
             _httpClient.BaseAddress = new Uri("http://apiservicios.ecuasolmovsa.com:3009");
 
-            // Verificar la longitud del usuario y la contraseña  
-            if (login.usuario.Length != 4 || login.contrasena.Length != 5)
-            {
-                return BadRequest("Usuario o contraseña inválidos");
-            }
-
             var response = await _httpClient.GetAsync($"/api/Usuarios?usuario={login.usuario}&password={login.contrasena}");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                if (content.Contains("INGRESO EXITOSO"))
-                {
-                    return Ok(content);
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                return Ok(content);
             }
             else
             {
@@ -77,9 +61,7 @@ namespace Backend_api.Controllers
             }
         }
 
-
-
-   [HttpGet]
+        [HttpGet]
         [Route("api/v1/centrocostos")]
         public async Task<ActionResult<List<CentroCostos>>> GetCentroCostosAsync()
         {
@@ -157,7 +139,6 @@ namespace Backend_api.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("CentroCostosEdit")]
         public async Task<ActionResult> EditarCentroCostoAsync(int codigoCentroCostos, string descripcionCentroCostos)
@@ -205,14 +186,7 @@ namespace Backend_api.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                if (content.Contains("INGRESO EXITOSO"))
-                {
-                    return Ok(content);
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                return Ok(content);
             }
             else
             {
@@ -337,7 +311,6 @@ namespace Backend_api.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("api/movimientoPlanilla/delete")]
         public async Task<ActionResult> DeleteMovimientoPlanillaAsync(int codigomovimiento, string descripcionomovimiento)
@@ -346,6 +319,26 @@ namespace Backend_api.Controllers
 
             var httpClient = new HttpClient();
             var response = await httpClient.GetAsync($"http://apiservicios.ecuasolmovsa.com:3009/api/Varios/MovimeintoPlanillaDelete?codigomovimiento={codigomovimiento}&descripcionomovimiento={descripcionomovimiento}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return Ok(content);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/movimientoPlanilla/edit")]
+        public async Task<ActionResult> EditarMovimientoPlanillaAsync(int codigoplanilla, string conceptos, int prioridad, string tipooperacion, int cuenta1, int cuenta2, int cuenta3, int cuenta4, string MovimientoExcepcion1, string MovimientoExcepcion2, string MovimientoExcepcion3, int Traba_Aplica_iess, int Traba_Proyecto_imp_renta, int Aplica_Proy_Renta, int Empresa_Afecta_Iess)
+        {
+            Console.WriteLine("El valor de codigoMovimientoPlanilla es: " + codigoplanilla);
+
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync($"http://apiservicios.ecuasolmovsa.com:3009/api/Varios/MovimientoPlanillaUpdate?codigoplanilla={codigoplanilla}&conceptos={conceptos}&prioridad={prioridad}&tipooperacion={tipooperacion}&cuenta1={cuenta1}&cuenta2={cuenta2}&cuenta3={cuenta3}&cuenta4={cuenta4}&MovimientoExcepcion1={MovimientoExcepcion1}&MovimientoExcepcion2={MovimientoExcepcion2}&MovimientoExcepcion3={MovimientoExcepcion3}&Traba_Aplica_iess={Traba_Aplica_iess}&Traba_Proyecto_imp_renta={Traba_Proyecto_imp_renta}&Aplica_Proy_Renta={Aplica_Proy_Renta}&Empresa_Afecta_Iess={Empresa_Afecta_Iess}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -377,29 +370,5 @@ namespace Backend_api.Controllers
                 return BadRequest();
             }
         }
-        
-        
-        [HttpGet]
-        [Route("api/movimientoPlanilla/edit")]
-        public async Task<ActionResult> EditarMovimientoPlanillaAsync(int codigoplanilla, string conceptos, int prioridad, string tipooperacion, int cuenta1, int cuenta2, int cuenta3, int cuenta4, string MovimientoExcepcion1, string MovimientoExcepcion2, string MovimientoExcepcion3, int Traba_Aplica_iess, int Traba_Proyecto_imp_renta, int Aplica_Proy_Renta, int Empresa_Afecta_Iess)
-        {
-            Console.WriteLine("El valor de codigoMovimientoPlanilla es: " + codigoplanilla);
-
-            var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync($"http://apiservicios.ecuasolmovsa.com:3009/api/Varios/MovimientoPlanillaUpdate?codigoplanilla={codigoplanilla}&conceptos={conceptos}&prioridad={prioridad}&tipooperacion={tipooperacion}&cuenta1={cuenta1}&cuenta2={cuenta2}&cuenta3={cuenta3}&cuenta4={cuenta4}&MovimientoExcepcion1={MovimientoExcepcion1}&MovimientoExcepcion2={MovimientoExcepcion2}&MovimientoExcepcion3={MovimientoExcepcion3}&Traba_Aplica_iess={Traba_Aplica_iess}&Traba_Proyecto_imp_renta={Traba_Proyecto_imp_renta}&Aplica_Proy_Renta={Aplica_Proy_Renta}&Empresa_Afecta_Iess={Empresa_Afecta_Iess}");
-
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                return Ok(content);
-            }
-            else
-            {
-                return BadRequest();
-            }
-        }
-
-
-
     }
 }
