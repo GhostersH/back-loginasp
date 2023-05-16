@@ -79,7 +79,7 @@ namespace Backend_api.Controllers
 
 
 
-        [HttpGet]
+   [HttpGet]
         [Route("api/v1/centrocostos")]
         public async Task<ActionResult<List<CentroCostos>>> GetCentroCostosAsync()
         {
@@ -88,9 +88,8 @@ namespace Backend_api.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-                var centroCostos = JsonConvert.DeserializeObject<List<CentroCostos>>(json);
-                return centroCostos;
+                var content = await response.Content.ReadAsStringAsync();
+                return Content(content, "application/json");
             }
             else
             {
