@@ -567,7 +567,7 @@ namespace Backend_api.Controllers
             string Entidad_Bancaria, string CarnetIESS, string Direccion, string Telefono_Fijo, string Telefono_Movil, string Genero , string Nro_Cuenta_Bancaria, string Codigo_Categoria_Ocupacion,
             string Ocupacion, string Centro_Costos, string Nivel_Salarial, string EstadoTrabajador, string Tipo_Contrato, string Tipo_Cese, string EstadoCivil, string TipodeComision, DateTime FechaNacimiento,
             DateTime FechaIngreso, DateTime FechaCese, int PeriododeVacaciones, DateTime FechaReingreso, DateTime Fecha_Ult_Actualizacion, string EsReingreso, int BancoCTA_CTE, string Tipo_Cuenta, int RSV_Indem_Acumul,
-            int A�o_Ult_Rsva_Indemni, int Mes_Ult_Rsva_Indemni, int FormaCalculo13ro, int FormaCalculo14ro, int BoniComplementaria, int BoniEspecial, int Remuneracion_Minima, int CuotaCuentaCorriente,
+            int Año_Ult_Rsva_Indemni, int Mes_Ult_Rsva_Indemni, int FormaCalculo13ro, int FormaCalculo14ro, int BoniComplementaria, int BoniEspecial, int Remuneracion_Minima, int CuotaCuentaCorriente,
             string Fondo_Reserva)
         {
 
