@@ -561,7 +561,7 @@ namespace Backend_api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("trabajador/Insert")]
         public async Task<ActionResult> InsertarTrabajadorAsync(int COMP_Codigo, string Tipo_trabajador, string Apellido_Paterno, string Apellido_Materno, string Nombres, string Identificacion, 
             string Entidad_Bancaria, string CarnetIESS, string Direccion, string Telefono_Fijo, string Telefono_Movil, string Genero , string Nro_Cuenta_Bancaria, string Codigo_Categoria_Ocupacion,
@@ -589,7 +589,7 @@ namespace Backend_api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("trabajador/Edit")]
         public async Task<ActionResult> EditarTrabajadorAsync(int COMP_Codigo, int Id_Trabajador, string Tipo_trabajador, string Apellido_Paterno, string Apellido_Materno, string Nombres, string Identificacion,
             string Entidad_Bancaria, string CarnetIESS, string Direccion, string Telefono_Fijo, string Telefono_Movil, string Genero, string Nro_Cuenta_Bancaria, string Codigo_Categoria_Ocupacion,
